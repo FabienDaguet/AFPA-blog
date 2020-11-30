@@ -1,11 +1,7 @@
 <?php 
 
     include("app/app.php");
-
-    if (!isset($_SESSION["userBO"])) {
-        header("Location:login.php");
-        exit;
-    }
+    include("app/protect.php");
 
     include("app/model/postModel.php");
     $posts=allPosts();

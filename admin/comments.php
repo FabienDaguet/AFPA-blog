@@ -1,6 +1,7 @@
 <?php
 
 include("app/app.php");
+include("app/protect.php");
 
 include("app/model/commentsModel.php");
 $comments = allComments();
