@@ -170,7 +170,7 @@
                                                         <h4 class="media-heading user_name"><?= $comment["display_name"]?> Le <small><?= $date[2] . "/" . $date[1] . "/" . $date[0] ?> </small></h4>
                                                         <p><?= $comment["comment_content"] ?></p>
                                                         <!--<a href="#" class="btn btn-primary btn-sm">Reply</a>-->
-                                                        <?php if (isset($_SESSION["userFO"]) && (($_SESSION["userFO"]["ID"] == $comment["comment_author"]) || ($_SESSION["userFO"]["user_admin"] == 1))) { ?>
+                                                        <?php if (isset($_SESSION["userFO"]) && (($_SESSION["userFO"]["ID"] == $comment["comment_author"]) || ($_SESSION["userFO"]["user_admin"] == 1) || ($_SESSION["userFO"]["user_admin"] == 2))) { ?>
                                                             <a href="comment_delete.php?id=<?= $comment["comment_ID"] ?>" class="suppr"><i class="far fa-trash-alt"></i></a>
                                                         <?php } ?>
                                                     </div>

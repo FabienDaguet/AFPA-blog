@@ -2,7 +2,7 @@
     <?php include("app/views/layout/sidebar.inc.php") ?>
         <main>
             <div class="container-fluid">
-                <a href="index.php"><h1 class="mt-4">Dashboard</h1></a>
+                <a href="index.php"></a><h1 class="mt-4">Dashboard</h1>
                 <ol class="breadcrumb mb-4">
                     <li class="breadcrumb-item active">Dashboard</li>
                 </ol>
@@ -54,31 +54,28 @@
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
+                                        <th>Catégorie</th>
+                                        <th>Titre</th>
                                         <th>Auteur</th>
-                                        <th>Commentaire</th>
-                                        <th>Article</th>
-                                        <th>Date</th>
-                                        <th>Action</th>
+                                        <th>Photo</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach($comments as $comment) { ?>
+                                    <?php foreach($posts as $post) { ?>
                                         <tr>
-                                            <td><?= $comment["display_name"] ?></td>
-                                            <td><?= $comment["comment_content"] ?></td>
-                                            <td><a href="../single.php?id=<?= $comment["post_ID"] ?>" target="_blank"><?= $comment["post_title"] ?></a></td>
-                                            <td><?= $comment["comment_date"] ?></td>
-                                            <td><a href="comment_delete.php?id=<?= $comment["comment_ID"] ?>">Supprimé</a></td>
+                                            <td><?= $post["cat_descr"] ?></td>
+                                            <td><?= $post["post_title"] ?></td>
+                                            <td><?= $post["display_name"] ?></td>
+                                            <td><img src="../static/images/<?= $post["post_img_url"] ?>" class="admin_img-post" ></td>
                                         </tr>
                                     <?php } ?>
                                 </tbody>
                                 <tfoot>
                                     <tr>
+                                        <th>Catégorie</th>
+                                        <th>Titre</th>
                                         <th>Auteur</th>
-                                        <th>Commentaire</th>
-                                        <th>Article</th>
-                                        <th>Date</th>
-                                        <th>Action</th>
+                                        <th>Photo</th>
                                     </tr>
                                 </tfoot>
                             </table>

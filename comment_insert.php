@@ -4,9 +4,11 @@
 
 include("app/app.php");
 
-if (isset($_SESSION["userFO"]) && ($_SESSION["userFO"]["ID"] == $comment["comment_author"])) {
-    
-    include("app/model/commentsModel.php");
+    //var_dump($_SESSION);
+
+include("app/model/commentsModel.php");
+
+if (isset($_POST["comment_post_ID"]) && isset($_SESSION["userFO"]["ID"])) {
     if (commentInsert($_POST, $_SESSION["userFO"]["ID"])) {
         flash_create("Votre commentaire a été posté !", "success");
         header("Location:single.php?id=" . $_POST["comment_post_ID"]);
@@ -15,7 +17,7 @@ if (isset($_SESSION["userFO"]) && ($_SESSION["userFO"]["ID"] == $comment["commen
         header("Location:single.php?id=" . $_POST["comment_post_ID"]);
     } 
 } else {
-     die("Va mourir !");
+     die("NON !");
 }
     
 

@@ -54,31 +54,39 @@
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
-                                        <th>Auteur</th>
-                                        <th>Commentaire</th>
-                                        <th>Article</th>
-                                        <th>Date</th>
-                                        <th>Action</th>
+                                        <th>Noms</th>
+                                        <th>Email</th>
+                                        <th>Photos</th>
+                                        <th>Droits</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach($comments as $comment) { ?>
+                                    <?php foreach($users as $user) { ?>
                                         <tr>
-                                            <td><?= $comment["display_name"] ?></td>
-                                            <td><?= $comment["comment_content"] ?></td>
-                                            <td><a href="../single.php?id=<?= $comment["post_ID"] ?>" target="_blank"><?= $comment["post_title"] ?></a></td>
-                                            <td><?= $comment["comment_date"] ?></td>
-                                            <td><a href="comment_delete.php?id=<?= $comment["comment_ID"] ?>">Supprimé</a></td>
+                                            <td><?= $user["display_name"] ?></td>
+                                            <td><?= $user["user_email"] ?></td>
+                                            <td><?= $user["user_photo"] ?></td>
+                                            <td class="d-flex justify-content-between align-items-center">
+                                                <?= $user["user_admin"] ?>
+                                                <form class="m-0" method="post" action="adminUsers.php">
+                                                    <input  type="hidden" name="user_ID" value="<?= $user["ID"] ?>">
+                                                    <select name="user_admin">
+                                                        <option value="0">Utilisateur</option>
+                                                        <option value="1" <?= ($user["user_admin"] == 1)?" selected":"" ?>>Modérateur</option> <!-- 2 façons d'écrire notre if: sans le if  -->
+                                                        <option value="2" <?php if($user["user_admin"] == 2) { ?> selected <?php } ?> >Super Admin</option> <!-- avec le if -->
+                                                    </select>
+                                                    <input type="submit" value="ok">
+                                                </form>
+                                            </td>
                                         </tr>
                                     <?php } ?>
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th>Auteur</th>
-                                        <th>Commentaire</th>
-                                        <th>Article</th>
-                                        <th>Date</th>
-                                        <th>Action</th>
+                                        <th>Noms</th>
+                                        <th>Email</th>
+                                        <th>Photos</th>
+                                        <th>Droits</th>
                                     </tr>
                                 </tfoot>
                             </table>

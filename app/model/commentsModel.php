@@ -34,13 +34,15 @@ function commentInsert($comment, $userID) {
     }
 }
 
-function commentDelete($id, $userID) {
+function commentDelete($id, $userID, $admin) {
     global $pdo;
     try {
         $query = "DELETE 
                     FROM blog_comments 
-                    WHERE comment_ID = " . $id ."
-                        AND comment_author= " . $userID;
+                    WHERE comment_ID = " . $id ;
+        if (!$admin) {   
+            $query .= " AND comment_author = " . $userID;      
+        }          
         //die($query);
         $req = $pdo->query($query);
         return true;

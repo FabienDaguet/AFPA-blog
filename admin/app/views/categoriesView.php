@@ -87,7 +87,7 @@
                             <tr>
                                 <th></th>
                                 <td>
-                                    <input type="submit" value="Enregistrer">
+                                    <input type="submit" value="Ajouter">
                                 </td>
                             </tr>
                         </table>
