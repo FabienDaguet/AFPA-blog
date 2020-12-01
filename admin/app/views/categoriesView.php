@@ -47,9 +47,16 @@
                 <div class="card mb-4">
                     <div class="card-header">
                         <i class="fas fa-table mr-1"></i>
-                        DataTable Example
+                        Catégories
                     </div>
                     <div class="card-body">
+                        <div class="border p-2 mb-3">
+                            <form class="d-flex" method="post" action="addCategorie.php">
+                                <label class="mr-2" for="category">Nouvelle catégorie</label>
+                                <input class="mr-2 rounded border-light" type="text" id="category" name="cat_descr">
+                                <input class="bg-primary text-white rounded border-light" type="submit" value="Ajouter">
+                            </form>
+                        </div>
                         <div class="table-responsive">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
@@ -76,22 +83,6 @@
                             </table>
                         </div>
                     </div>
-                </div>
-                <div>
-                    <form method="post" action="addCategorie.php">
-                        <table>
-                            <tr>
-                                <th><label for="category">Ajouter une catégorie</label></th>
-                                <td><input type="text" id="category" name="cat_descr"></td>
-                            </tr>
-                            <tr>
-                                <th></th>
-                                <td>
-                                    <input type="submit" value="Ajouter">
-                                </td>
-                            </tr>
-                        </table>
-                    </form>
                 </div>
             </div>
         </main>

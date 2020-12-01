@@ -17,7 +17,7 @@
                     <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav">
                         <a href="articles.php" class="nav-link">Articles</a>
-                            <a class="nav-link" href="layout-sidenav-light.html">Nouvel article</a>
+                            <a class="nav-link" href="addArticle.php">Nouvel article</a>
                         </nav>
                     </div>
                     <!--

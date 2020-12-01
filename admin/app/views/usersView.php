@@ -47,7 +47,7 @@
                 <div class="card mb-4">
                     <div class="card-header">
                         <i class="fas fa-table mr-1"></i>
-                        DataTable Example
+                        Liste des utilisateurs
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -66,8 +66,7 @@
                                             <td><?= $user["display_name"] ?></td>
                                             <td><?= $user["user_email"] ?></td>
                                             <td><?= $user["user_photo"] ?></td>
-                                            <td class="d-flex justify-content-between align-items-center">
-                                                <?= $user["user_admin"] ?>
+                                            <td class="text-center">
                                                 <form class="m-0" method="post" action="adminUsers.php">
                                                     <input  type="hidden" name="user_ID" value="<?= $user["ID"] ?>">
                                                     <select name="user_admin">

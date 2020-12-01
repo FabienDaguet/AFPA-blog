@@ -47,17 +47,26 @@
                                     AND post_author = ID 
                                     AND post_category = " . $id . "
                                         ORDER BY post_date DESC";
-                                
-            /*
-            while($posts = $req->fetch()) {
-                var_dump($posts);
-            }
-            */
+
             $req = $pdo->query($query);
             $req->setFetchMode(PDO::FETCH_ASSOC);
             $posts = $req->fetchAll(); 
             return $posts;
         } catch (Exception $e) {
             die("Erreur MySQL : " .utf8_encode($e->getMessage()));
+        }
+    }
+
+    function addPost() {
+        global $pdo;
+        try {
+            $query = "INSERT INTO blog_posts
+                        (post_author, post_title, post_category, post_content, post_img_url)
+                        VALUES
+                        (" . $_POST["author"] . ", '" . addslashes($_POST["title"]) . "', '" . addslashes($_POST["category"]) . "', '" . addslashes($_POST["content"]) . "', '')";
+            //die($query);
+            $req = $pdo->query($query);
+        } catch (Exception $e) {
+            die ("Erreur MySQL : " .utf8_encode($e->getMessage()));
         }
     }

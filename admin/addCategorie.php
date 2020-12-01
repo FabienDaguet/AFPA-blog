@@ -1,6 +1,8 @@
 <?php
 
 include("app/app.php");
+include("app/protect.php");
+
 
 include("app/model/categoriesModel.php"); 
 if (categorieInsert($_POST["cat_descr"])) {
