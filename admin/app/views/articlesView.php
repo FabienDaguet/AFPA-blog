@@ -66,7 +66,7 @@
                                             <td><?= $post["cat_descr"] ?></td>
                                             <td><?= $post["post_title"] ?></td>
                                             <td><?= $post["display_name"] ?></td>
-                                            <td><img src="../static/images/<?= $post["post_img_url"] ?>" class="admin_img-post" ></td>
+                                            <td><img class="admin_img" src="../static/images/<?= $post["post_img_url"] ?>" ></td>
                                         </tr>
                                     <?php } ?>
                                 </tbody>
