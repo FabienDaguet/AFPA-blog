@@ -47,7 +47,7 @@
                 <div class="card mb-4">
                     <div class="card-header">
                         <i class="fas fa-table mr-1"></i>
-                        DataTable Example
+                        Index
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -66,7 +66,7 @@
                                             <td><?= $post["cat_descr"] ?></td>
                                             <td><?= $post["post_title"] ?></td>
                                             <td><?= $post["display_name"] ?></td>
-                                            <td><img src="../static/images/<?= $post["post_img_url"] ?>" class="w-25" ></td>
+                                            <td><img src="../static/images/<?= $post["post_img_url"] ?>" class="admin_img" ></td>
                                         </tr>
                                     <?php } ?>
                                 </tbody>
