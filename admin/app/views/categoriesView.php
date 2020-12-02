@@ -12,37 +12,39 @@
                         Catégories
                     </div>
                     <div class="card-body">
-                        <div class="border p-2 mb-3">
-                            <form class="d-flex" method="post" action="addCategorie.php">
-                                <label class="mr-2" for="category">Nouvelle catégorie</label>
-                                <input class="mr-2 rounded border-light" type="text" id="category" name="cat_descr">
-                                <input class="bg-primary text-white rounded border-light" type="submit" value="Ajouter">
-                            </form>
-                        </div>
                         <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <thead>
-                                    <tr>
-                                        <th>Catégories</th>
-                                        <th>Nombre d'articles</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php foreach($categories as $category) { ?>
+                            <div class="p-2 mb-3 col">
+                                <form class="d-flex flex-wrap" method="post" action="addCategorie.php">
+                                    <label class="mr-2" for="category">Nouvelle catégorie</label>
+                                    <input class="mr-2 rounded border-light" type="text" id="category" name="cat_descr">
+                                    <input class="bg-primary text-white rounded border-light" type="submit" value="Ajouter">
+                                </form>
+                            </div>
+                            <div class="col">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
                                         <tr>
-                                            <td><?= $category["cat_descr"] ?></td>
-                                            <td><?= count(postByClass($category["cat_id"])) ?></td>
-                                            
+                                            <th>Catégories</th>
+                                            <th>Nombre d'articles</th>
                                         </tr>
-                                    <?php } ?>
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th>Catégorie</th>
-                                        <th>Nombre d'articles</th>
-                                    </tr>
-                                </tfoot>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach($categories as $category) { ?>
+                                            <tr>
+                                                <td><?= $category["cat_descr"] ?></td>
+                                                <td><?= count(postByClass($category["cat_id"])) ?></td>
+                                                
+                                            </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Catégorie</th>
+                                            <th>Nombre d'articles</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>    
                         </div>
                     </div>
                 </div>

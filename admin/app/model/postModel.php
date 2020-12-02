@@ -2,7 +2,7 @@
     function allPosts() {
         global $pdo;
         try {
-            $query = "SELECT post_title, LEFT(post_content, " . TRUNCATE . ") AS post_content, post_date, display_name, cat_descr, cat_id, post_ID, post_img_url
+            $query = "SELECT post_title, post_date, display_name, cat_descr, cat_id, post_ID, post_img_url
                                 FROM blog_posts, blog_users, blog_categories
                                 WHERE post_author = blog_users.ID
                                     AND post_category= cat_id
@@ -69,4 +69,18 @@
         } catch (Exception $e) {
             die ("Erreur MySQL : " .utf8_encode($e->getMessage()));
         }
+    }
+
+    function postDelete($id) {
+        global $pdo;
+        try {
+            $query = "DELETE 
+                        FROM blog_posts 
+                        WHERE post_ID = " . $id;
+            //die($query);
+            $req = $pdo->query($query);
+            return true;
+        } catch (Exception $e) {
+            return false;
+        } 
     }
