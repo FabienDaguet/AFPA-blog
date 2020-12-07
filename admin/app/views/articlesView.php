@@ -33,7 +33,7 @@
                                             <td><?= $post["post_title"] ?></td>
                                             <td><?= $post["display_name"] ?></td>
                                             <td><img class="admin_img" src="../static/images/<?= $post["post_img_url"] ?>" ></td>
-                                            <td><a href=""><i class="fas fa-file-signature text-primary"></i></a> <a href="article_delete.php?id=<?= $post["post_ID"] ?>"><i class="fas fa-trash-alt text-primary"></i></a></td>
+                                            <td><a href="articleUpdate.php?id=<?= $post["post_ID"] ?>"><i class="fas fa-file-signature text-primary"></i></a> <a href="article_delete.php?id=<?= $post["post_ID"] ?>"><i class="fas fa-trash-alt text-primary"></i></a></td>
                                         </tr>
                                     <?php } ?>
                                 </tbody>

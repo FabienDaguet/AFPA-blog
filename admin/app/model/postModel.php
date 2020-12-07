@@ -21,7 +21,7 @@
     function postById($id) {
         global $pdo;
         try {
-            $query = "SELECT post_title, post_content, post_date, display_name, cat_descr, post_ID, post_img_url, cat_id, user_photo, user_descr
+            $query = "SELECT post_title, post_content, post_date, display_name, cat_descr, post_ID, post_img_url, cat_id, user_photo, user_descr, post_category
                                 FROM blog_posts, blog_users, blog_categories 
                                 WHERE post_author = blog_users.ID
                                     AND post_category= cat_id
@@ -83,4 +83,26 @@
         } catch (Exception $e) {
             return false;
         } 
+    }
+
+    function postUpdate($post) {
+        global $pdo;
+        try {
+            $query = "UPDATE blog_posts
+                        SET  
+                            post_title = :title,
+                            post_category = :category,
+                            post_content = :content
+                        where post_ID = :id";
+            die($query);
+            $req = $pdo->prepare($query);
+            $req->bindValue(":title", $post["post_title"], PDO::PARAM_STR);
+            $req->bindValue(":category", $post["post_category"], PDO::PARAM_STR);
+            $req->bindValue(":content", $post["post_content"], PDO::PARAM_STR);
+            $req->bindValue(":id", $post["id"], PDO::PARAM_INT);
+            $req->execute();
+            return true;
+        } catch (Exception $e) {
+            return false;
+        }
     }

@@ -3,6 +3,7 @@
         <main>
             <div class="container-fluid">
                 <a href="index.php"></a><h1 class="mt-4">Dashboard</h1>
+                <?php flash_display() ?>
                 <ol class="breadcrumb mb-4">
                     <li class="breadcrumb-item active">Dashboard</li>
                 </ol>

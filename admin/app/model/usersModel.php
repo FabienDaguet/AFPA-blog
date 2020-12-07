@@ -14,22 +14,57 @@ function allUsers() {
     } catch (Exception $e) {
         die("Erreur MySQL : " .utf8_encode($e->getMessage()));
         }
-}
+}  
 
 function userLogin($login, $password) {
     global $pdo;
     try {
-        $query = "SELECT *
+        /*$query = "SELECT *
                     FROM blog_users
-                    WHERE user_login ='" . $login . "'
-                        AND user_pass='" . $password . "'
+                    WHERE user_login =" . $pdo->quote($login, PDO::PARAM_STR) . "
+                        AND user_pass=" . $pdo->quote($password, PDO::PARAM_STR) . "
                         AND user_admin = 2";
         //echo $query;
         $req = $pdo->query($query);
         $req->setFetchMode(PDO::FETCH_ASSOC);
         $post = $req->fetch(); 
+        $req->closeCursor(); */
+        $query = "SELECT *
+                    FROM blog_users
+                    WHERE user_login = :login
+                        AND user_pass= :password
+                        AND user_admin = 2";
+        //echo $query;
+        $req = $pdo->prepare($query);
+        $req->bindValue(":login", $login, PDO::PARAM_STR);
+        $req->bindValue(":password", $password, PDO::PARAM_STR);
+        $req->execute();
+        
+        $req->setFetchMode(PDO::FETCH_ASSOC);
+        $user = $req->fetch(); 
         $req->closeCursor();
-        return $post;
+        return $user;
+    } catch (Exception $e) {
+        die("Erreur MySQL : " .utf8_encode($e->getMessage()));
+    }
+}
+
+function userById($id) {
+    global $pdo;
+    try {
+        $query = "SELECT *
+                    FROM blog_users
+                    WHERE ID = :id";
+                        
+        //echo $query;
+        $req = $pdo->prepare($query);
+        $req->bindValue("id",$id , PDO::PARAM_INT);
+        $req->execute();
+
+        $req->setFetchMode(PDO::FETCH_ASSOC);
+        $user = $req->fetch(); 
+        $req->closeCursor();
+        return $user;
     } catch (Exception $e) {
         die("Erreur MySQL : " .utf8_encode($e->getMessage()));
     }
@@ -43,6 +78,32 @@ function addAdmin($set, $id) {
                     where ID = $id";
         //die($query);
         $req = $pdo->query($query);
+        return true;
+    } catch (Exception $e) {
+        return false;
+    }
+}
+
+function userUpdate($user) {
+    global $pdo;
+    try {
+        $query = "UPDATE blog_users
+                    SET  
+                        user_login = :login,
+                        display_name = :name,
+                        user_pass = :pass,
+                        user_email = :email,
+                        user_descr = :descr
+                    where ID = :id";
+        //die($query);
+        $req = $pdo->prepare($query);
+        $req->bindValue(":login", $user["user_login"], PDO::PARAM_STR);
+        $req->bindValue(":name", $user["display_name"], PDO::PARAM_STR);
+        $req->bindValue(":pass", $user["user_pass"], PDO::PARAM_STR);
+        $req->bindValue(":email", $user["user_email"], PDO::PARAM_STR);
+        $req->bindValue(":descr", $user["user_descr"], PDO::PARAM_STR);
+        $req->bindValue(":id", $user["id"], PDO::PARAM_INT);
+        $req->execute();
         return true;
     } catch (Exception $e) {
         return false;

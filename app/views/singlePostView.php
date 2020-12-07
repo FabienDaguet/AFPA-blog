@@ -150,7 +150,7 @@
 
                         <hr class="invis1">
                         <div class="custombox clearfix">
-                            <h4 class="small-title"><? count($comments) ?> Commentaires</h4>
+                            <h4 class="small-title"><?= count($comments) ?> Commentaires</h4>
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="comments-list">

@@ -38,21 +38,6 @@ function commentsByPost($idPost) {
         }
 }
 
-function commentInsert($comment) {
-    global $pdo;
-    try {
-        $query = "INSERT INTO blog_comments
-                    (comment_post_ID, comment_author, comment_content)
-                    VALUES
-                    (" . $comment["comment_post_ID"] . "," . 3 . ",'" . addslashes($comment["comment_content"]) . "')";
-        //die($query);
-        $req = $pdo->query($query);
-        return true;
-    } catch (Exception $e) {
-        return false;
-    }
-}
-
 function commentDelete($id) {
     global $pdo;
     try {

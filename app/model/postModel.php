@@ -25,9 +25,10 @@
                                 FROM blog_posts, blog_users, blog_categories 
                                 WHERE post_author = blog_users.ID
                                     AND post_category= cat_id
-                                    AND post_ID= " . $id;
+                                    AND post_ID= :id";
             //echo $query;
-            $req = $pdo->query($query);
+            $req = $pdo->prepare($query);
+            $req->execute(array("id"=> $_GET["id"]));
             $req->setFetchMode(PDO::FETCH_ASSOC);
             $post = $req->fetch(); 
             $req->closeCursor();
