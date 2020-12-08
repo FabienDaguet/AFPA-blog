@@ -21,9 +21,10 @@
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header"><h3 class="text-center font-weight-light my-4">Mise à jour de vos informations</h3></div>
                                     <div class="card-body">
+                                        <?php flash_display() ?>
                                         <form method="post" action="userUpdate.php">
                                             <input type="hidden" name="id" value="<?= $user["ID"] ?>">
-                                        <div class="form-group">
+                                            <div class="form-group">
                                                 <label class="small mb-1" for="user_name" >Login</label>
                                                 <input class="form-control py-4" name="user_login" id="user_login" type="text" placeholder="" value="<?= $user["user_login"] ?>" required/>
                                             </div>
@@ -31,10 +32,12 @@
                                                 <label class="small mb-1" for="user_name" >Nom d'utilisateur</label>
                                                 <input class="form-control py-4" name="display_name" id="user_name" type="text"  value="<?= $user["display_name"] ?>"required/>
                                             </div>
+                                            <!--
                                             <div class="form-group">
                                                 <label class="small mb-1" for="user_pass">Mot de passe</label>
                                                 <input class="form-control py-4" id="user_pass" name="user_pass" type="password" value="<?= $user["user_pass"] ?>"required/>
                                             </div>
+                                            -->
                                             <div class="form-group">
                                                 <label class="small mb-1" for="user_pass-confirm">Email</label>
                                                 <input class="form-control py-4" id="user_email" name="user_email" type="email" value="<?= $user["user_email"] ?>" required/>
@@ -47,6 +50,24 @@
                                                 <input type="submit" class="btn btn-primary w-100" value="Envoyer">
                                             </div>
                                         </form>
+                                        <?php if($_GET["id"] == $_SESSION["userBO"]["ID"]) { ?>
+                                            <form method="post" action="userPassUpdate.php?token=<?= $_SESSION["userBO"]["token"] ?>">
+                                                <div class="form-group">
+                                                    <label class="small mb-1" for="user_pass_old">Ancien mot de passe</label>
+                                                    <input class="form-control py-4" id="user_pass_old" name="user_pass_old" type="password" placeholder="Entrez votre mot de passe" required/>
+                                                </div><div class="form-group">
+                                                    <label class="small mb-1" for="user_pass">Nouveau mot de passe</label>
+                                                    <input class="form-control py-4" id="user_pass" name="user_pass" type="password" placeholder="Entrez un nouveau mot de passe" required/>
+                                                </div><div class="form-group">
+                                                    <label class="small mb-1" for="user_pass_new">Confirmer nouveau mot de passe</label>
+                                                    <input class="form-control py-4" id="user_pass_new" name="user_pass_new" type="password" placeholder="Retapez le mot de passe" required/>
+                                                </div>
+                                                <div class="form-group text-center">
+                                                    <!--<a class="small" href="password.html">Forgot Password?</a>-->
+                                                    <input type="submit" class="btn btn-primary w-100" value="Envoyer">
+                                                </div>
+                                            </form>
+                                        <?php } ?>
                                     </div>
                                 </div>
                             </div>

@@ -3,6 +3,7 @@
 include("app/app.php");
 include("app/protect.php");
 
+$_POST = sanitize($_POST);
 
 include("app/model/categoriesModel.php"); 
 if (categorieInsert($_POST["cat_descr"])) {

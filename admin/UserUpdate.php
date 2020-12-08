@@ -11,7 +11,7 @@
                 if ($_POST["id"] == $_SESSION["userBO"]["ID"]) {
                     $_SESSION["userBO"]["user_login"] = $_POST["user_login"];
                     $_SESSION["userBO"]["display_name"] = $_POST["display_name"];
-                    $_SESSION["userBO"]["user_pass"] = $_POST["user_pass"];
+                    //$_SESSION["userBO"]["user_pass"] = $_POST["user_pass"];
                     $_SESSION["userBO"]["user_email"] = $_POST["user_email"];
                     $_SESSION["userBO"]["user_descr"] = $_POST["user_descr"];
                 }

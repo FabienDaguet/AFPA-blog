@@ -8,6 +8,7 @@ var_dump($user);
 
 if($user) {
     $_SESSION["userFO"] = $user;
+    $_SESSION["userFO"]["token"] = md5(uniqid());
     header("Location:" . $_POST["referer"]);
 } else {
     flash_create("login/mot de passe incorrectes ! ","danger");

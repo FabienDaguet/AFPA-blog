@@ -32,3 +32,19 @@
             return false;
         }
     }
+    
+function categoryDelete($id) {
+    global $pdo;
+    try {
+        $query = "DELETE 
+                    FROM blog_categories 
+                    WHERE cat_id = " . $id;
+        //die($query);
+        $req = $pdo->prepare($query);
+        $req ->bindValue(":cat_id", $id, PDO::PARAM_INT);
+        $req ->execute();
+        return true;
+    } catch (Exception $e) {
+        return false;
+    } 
+}

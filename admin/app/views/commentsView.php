@@ -30,7 +30,7 @@
                                             <td><?= $comment["comment_content"] ?></td>
                                             <td><a href="../single.php?id=<?= $comment["post_ID"] ?>" target="_blank"><?= $comment["post_title"] ?></a></td>
                                             <td><?= $comment["comment_date"] ?></td>
-                                            <td><a href="comment_delete.php?id=<?= $comment["comment_ID"] ?>"><i class="fas fa-trash-alt"></i></a></td>
+                                            <td><a href="comment_delete.php?id=<?= $comment["comment_ID"] ?>" class="suppr"><i class="fas fa-trash-alt"></i></a></td>
                                         </tr>
                                     <?php } ?>
                                 </tbody>

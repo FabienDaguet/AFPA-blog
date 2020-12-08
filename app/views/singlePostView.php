@@ -171,7 +171,7 @@
                                                         <p><?= $comment["comment_content"] ?></p>
                                                         <!--<a href="#" class="btn btn-primary btn-sm">Reply</a>-->
                                                         <?php if (isset($_SESSION["userFO"]) && (($_SESSION["userFO"]["ID"] == $comment["comment_author"]) || ($_SESSION["userFO"]["user_admin"] == 1) || ($_SESSION["userFO"]["user_admin"] == 2))) { ?>
-                                                            <a href="comment_delete.php?id=<?= $comment["comment_ID"] ?>" class="suppr"><i class="far fa-trash-alt"></i></a>
+                                                            <a href="comment_delete.php?id=<?= $comment["comment_ID"] ?>&token=<?= $_SESSION["userFO"]["token"] ?>" class="suppr"><i class="far fa-trash-alt"></i></a>
                                                         <?php } ?>
                                                     </div>
                                                 </div>
@@ -192,7 +192,7 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <?php if(isset($_SESSION["userFO"])) { ?>
-                                        <form class="form-wrapper" action="comment_insert.php" method="post">
+                                        <form class="form-wrapper" action="comment_insert.php&token=<?= $_SESSION["userFO"]["token"] ?>" method="post">
                                             <input type="hidden" name="comment_post_ID" value="<?= $_GET["id"] ?>">
                                             <textarea class="form-control" placeholder="Votre commentaire" name="comment_content"></textarea>
                                             <button type="submit" class="btn btn-primary">Envoyer</button>

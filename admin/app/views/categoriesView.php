@@ -14,7 +14,7 @@
                     <div class="card-body">
                         <div class="table-responsive">
                             <div class="p-2 mb-3 col">
-                                <form class="d-flex flex-wrap" method="post" action="addCategorie.php">
+                                <form class="d-flex flex-wrap" method="post" action="addCategorie.php>">
                                     <label class="mr-2" for="category">Nouvelle catégorie</label>
                                     <input class="mr-2 rounded border-light" type="text" id="category" name="cat_descr">
                                     <input class="bg-primary text-white rounded border-light" type="submit" value="Ajouter">
@@ -26,6 +26,7 @@
                                         <tr>
                                             <th>Catégories</th>
                                             <th>Nombre d'articles</th>
+                                            <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -33,6 +34,7 @@
                                             <tr>
                                                 <td><?= $category["cat_descr"] ?></td>
                                                 <td><?= count(postByClass($category["cat_id"])) ?></td>
+                                                <td><a href="category_delete.php?id=<?= $category["cat_id"] ?>&token=<?= $_SESSION["userBO"]["token"] ?>" class="suppr"><i class="fas fa-trash-alt"></i></a></td>
                                                 
                                             </tr>
                                         <?php } ?>
@@ -41,6 +43,7 @@
                                         <tr>
                                             <th>Catégorie</th>
                                             <th>Nombre d'articles</th>
+                                            <th>Actions</th>
                                         </tr>
                                     </tfoot>
                                 </table>
