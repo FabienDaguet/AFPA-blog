@@ -14,30 +14,18 @@
                             <h2 class="widget-title">Postes</h2>
                             <div class="blog-list-widget">
                                 <div class="list-group">
-                                    <a href="single.php" class="list-group-item list-group-item-action flex-column align-items-start">
-                                        <div class="w-100 justify-content-between">
-                                            <img src="static/upload/garden_sq_09.jpg" alt="" class="img-fluid float-left">
-                                            <h5 class="mb-1">5 Beautiful buildings you need to before dying</h5>
-                                            <small>12 Jan, 2016</small>
-                                        </div>
-                                    </a>
 
-                                    <a href="single.php" class="list-group-item list-group-item-action flex-column align-items-start">
+                                <?php foreach ($lastestPosts as $lastestPost) { ?>
+                                    <a href="?action=single&id=<?= $lastestPost["post_ID"] ?>" class="list-group-item list-group-item-action flex-column align-items-start">
                                         <div class="w-100 justify-content-between">
-                                            <img src="static/upload/garden_sq_06.jpg" alt="" class="img-fluid float-left">
-                                            <h5 class="mb-1">Let's make an introduction for creative life</h5>
-                                            <small>11 Jan, 2016</small>
+                                            <img src="static/images/<?= $lastestPost["post_img_url"] ?>" alt="" class="img-fluid float-left">
+                                            <h5 class="mb-1"><?= $lastestPost["post_title"] ?></h5>
+                                            <small><?= displayDate($lastestPost["post_date"], 1) ?></small>
                                         </div>
                                     </a>
-
-                                    <a href="single.php" class="list-group-item list-group-item-action flex-column align-items-start">
-                                        <div class="w-100 last-item justify-content-between">
-                                            <img src="static/upload/garden_sq_02.jpg" alt="" class="img-fluid float-left">
-                                            <h5 class="mb-1">Did you see the most beautiful sea in the world?</h5>
-                                            <small>07 Jan, 2016</small>
-                                        </div>
-                                    </a>
-                                </div>
+                                <?php } ?>
+                        
+                                </div><!-- end list-group -->
                             </div><!-- end blog-list -->
                         </div><!-- end widget -->
 
@@ -70,7 +58,7 @@
                             <div class="link-widget">
                                 <ul>
                                     <?php foreach($categories as $category) { ?>
-                                        <li><a href="category.php?id=<?= $category["cat_id"] ?>"><?= $category["cat_descr"] ?> <span>(<?= count(postByClass($category["cat_id"]))?>)</span></a></li>
+                                        <li><a href="?action=category&id==<?= $category["cat_id"] ?>"><?= $category["cat_descr"] ?> <span>(<?= count(postByClass($category["cat_id"]))?>)</span></a></li>
                                     <?php } ?>
 
                                 </ul>

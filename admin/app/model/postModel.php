@@ -57,19 +57,25 @@
         }
     }
 
-    function addPost() {
+    function addPost($post, $id_user) {
         global $pdo;
-        try {
+        if (isset($post["title"])) {
+
+            try {
             $query = "INSERT INTO blog_posts
                         (post_author, post_title, post_category, post_content, post_img_url)
                         VALUES
-                        (" . $_POST["author"] . ", '" . addslashes($_POST["title"]) . "', '" . addslashes($_POST["category"]) . "', '" . addslashes($_POST["content"]) . "', '')";
-            //die($query);
-            $req = $pdo->query($query);
-        } catch (Exception $e) {
-            die ("Erreur MySQL : " .utf8_encode($e->getMessage()));
+                        (" . $id_user . ", '" . addslashes($post["title"]) . "', '" . addslashes($post["category"]) . "', '" . addslashes($post["content"]) . "', '" . $post["post_img_url"] . "')";
+                    //die($query);
+                    $req = $pdo->query($query);
+                    return true;
+                } catch (Exception $e) {
+                    return false;
+                }
+            }
         }
-    }
+
+        
 
     function postDelete($id) {
         global $pdo;
@@ -94,7 +100,7 @@
                             post_category = :category,
                             post_content = :content
                         where post_ID = :id";
-            die($query);
+            //die($query);
             $req = $pdo->prepare($query);
             $req->bindValue(":title", $post["post_title"], PDO::PARAM_STR);
             $req->bindValue(":category", $post["post_category"], PDO::PARAM_STR);

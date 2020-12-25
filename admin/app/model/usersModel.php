@@ -37,7 +37,7 @@ function userLogin($login, $password) {
         //echo $query;
         $req = $pdo->prepare($query);
         $req->bindValue(":login", $login, PDO::PARAM_STR);
-        $req->bindValue(":password", $password, PDO::PARAM_STR);
+        $req->bindValue(":password", md5(SALT . $password . SALT), PDO::PARAM_STR);
         $req->execute();
         
         $req->setFetchMode(PDO::FETCH_ASSOC);
@@ -126,4 +126,44 @@ function userPassUpdate($user, $id) {
     } catch (Exception $e) {
         return false;
     }
+}
+
+function userInsert($user)
+{
+    global $pdo;
+    try {
+        $query = "INSERT INTO blog_users
+        (user_login, user_pass, user_email, display_name, user_descr, user_admin, user_key)
+    VALUES
+        (:user_login, :user_pass, :user_email, :display_name, :user_descr, :user_admin, :user_key)";
+
+        $req = $pdo->prepare($query);
+        $req->bindValue(':user_admin', isset($user["user_admin"])?1:0, PDO::PARAM_INT);
+        $req->bindValue(':user_login', $user["user_login"], PDO::PARAM_STR);
+        $req->bindValue(':user_pass', md5(SALT . $user["user_pass"] . SALT), PDO::PARAM_STR);
+        $req->bindValue(':user_email', $user["user_email"], PDO::PARAM_STR);
+        $req->bindValue(':display_name', $user["display_name"], PDO::PARAM_STR);
+        $req->bindValue(':user_descr', $user["user_descr"], PDO::PARAM_STR);
+        $req->bindValue(':user_key', '',  PDO::PARAM_STR);
+        $req->execute();
+        return true;
+    } catch (Exception $e) {
+        return false;
+    }
+}
+
+function userDelete($id) {
+    global $pdo;
+    try {
+        $query = "DELETE 
+                    FROM blog_users 
+                    WHERE ID = " . $id;
+        //die($query);
+        $req = $pdo->prepare($query);
+        $req ->bindValue(":ID", $id, PDO::PARAM_INT);
+        $req ->execute();
+        return true;
+    } catch (Exception $e) {
+        return false;
+    } 
 }

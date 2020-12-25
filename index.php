@@ -1,10 +1,25 @@
-<?php 
-    include("app/app.php");
+<?php
 
-    include("app/model/postModel.php"); 
-    $posts = allPosts();
-    //var_dump($posts);
+include("config/config.inc.php");
+include("core/pdo.inc.php");
+include_once("core/core.php");
 
-    define("LAYOUT_TITLE", "Bienvenue");
-    
-    include("app/views/indexView.php");
+if (!isset($_GET["module"])) {
+    $module = DEFAULT_MODULE;
+} else {
+    $module = $_GET["module"];
+}
+
+if (!isset($_GET["action"])) {
+    $action = DEFAULT_ACTION;
+} else {
+    $action = $_GET["action"];
+}
+
+$file = "app/controllers/" . $module . "/" . $action . ".php";
+
+if (file_exists($file)) {
+    include($file);
+} else {
+    include_once("app/views/404.php");
+}

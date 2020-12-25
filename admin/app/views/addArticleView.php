@@ -12,7 +12,7 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <form method="post" action="sendArticle.php">
+                            <form method="post" action="sendArticle.php?token=<?= $_SESSION["userBO"]["token"] ?>" enctype="multipart/form-data">
                                 <table>
                                 <tr>
                                     <td><input name="author" type="hidden" value="<?= $_SESSION["userBO"]["ID"] ?>"></td>
@@ -32,6 +32,10 @@
                                 <tr>
                                     <td><label for="content">Artcile</label></td>
                                     <td><textarea name="content" id="content" cols="100" rows="15"></textarea></td>
+                                </tr>
+                                <tr>
+                                    <td>Image</td>
+                                    <td><input class="form-control-file" type="file" id="post_img_url" name="post_img_url" placeholder="Choisissez un fichié"></td>
                                 </tr>
                                 </table>
                                 <input type="submit" value="Publier">    

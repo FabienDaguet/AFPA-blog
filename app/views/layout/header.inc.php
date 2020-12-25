@@ -84,10 +84,11 @@
                         <div class="topsearch text-right">
                         <div>
                             <?php if(!isset($_SESSION["userFO"])) {?>
-                                <a href="login.php">login</a>
+                                <a href="?module=users&action=login">login</a>
                             <?php } else { ?>
                                 Bonjour <?= $_SESSION["userFO"]["display_name"] ?> - 
-                                <a href="logoutProcess.php">logout</a>
+                                <a href="?module=users&action=logoutProcess">logout </a>
+                                <a href="?module=users&action=profil">/ Profil</a>
                             <?php } ?>  
                         </div>
                             <a data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-search"></i> Recherche</a>
@@ -123,19 +124,19 @@
                                 <a class="nav-link color-green-hover" href="index.php">Acceuil</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link color-green-hover" href="category.php?id=4">Le centre</a>
+                                <a class="nav-link color-green-hover" href="?action=category&id=4">Le centre</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link color-green-hover" href="category.php?id=1">La gauche</a>
+                                <a class="nav-link color-green-hover" href="?action=category&id=1">La gauche</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link color-green-hover" href="category.php?id=2">La droite</a>
+                                <a class="nav-link color-green-hover" href="?action=category&id=2">La droite</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link color-green-hover" href="category.php?id=3">Les autres</a>
+                                <a class="nav-link color-green-hover" href="?action=category&id=3">Les autres</a>
                             </li>  
                             <li class="nav-item">
-                                <a class="nav-link color-green-hover" href="contact.php">Contact</a>
+                                <a class="nav-link color-green-hover" href="?module=pages&action=contact">Contact</a>
                             </li>
                         </ul>
                     </div>

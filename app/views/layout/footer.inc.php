@@ -51,7 +51,10 @@
     <script src="static/js/tether.min.js"></script>
     <script src="static/js/bootstrap.min.js"></script>
     <script src="static/js/custom.js"></script>
-    <script src="static/js/confirm.js"></script>
+    <script src="static/js/app.js"></script>
+    <?php if (isset($js)) foreach ($js as $url){?>
+        <script src="<?= $url ?>"></script>
+    <?php } ?>
 
 </body>
 </html>

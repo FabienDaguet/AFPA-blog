@@ -28,12 +28,12 @@
 
                         <div class="row">
                             <div class="col-lg-8 offset-lg-2">
-                                <form class="form-wrapper">
-                                    <input type="text" class="form-control" placeholder="Your name">
-                                    <input type="text" class="form-control" placeholder="Email address">
-                                    <input type="text" class="form-control" placeholder="Phone">
-                                    <input type="text" class="form-control" placeholder="Subject">
-                                    <textarea class="form-control" placeholder="Your message"></textarea>
+                                <form class="form-wrapper" action="" method="POST">
+                                    <input type="text" class="form-control" placeholder="Your name" name="name">
+                                    <input type="text" class="form-control" placeholder="Email address" name="mail">
+                                    <input type="text" class="form-control" placeholder="Phone" name="phone">
+                                    <input type="text" class="form-control" placeholder="Subject" name="sujet">
+                                    <textarea class="form-control" placeholder="Your message" name="contenu"></textarea>
                                     <button type="submit" class="btn btn-primary">Send <i class="fa fa-envelope-open-o"></i></button>
                                 </form>
                             </div>

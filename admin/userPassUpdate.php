@@ -18,12 +18,13 @@
             if(userPassUpdate($_POST, $_SESSION["userBO"]["ID"])) {
                 if ($_POST["id"] == $_SESSION["userBO"]["ID"]) {
                     $_SESSION["userBO"]["user_pass"] = md5(SALT . $_POST["user_pass"] . SALT);  
-                    flash_create("Changement effectué ! ","success");
-                }else
-                flash_create("Changement non effectué ! ","Danger");
-                } 
-                header("Location:users.php");
+                }  
+                flash_create("Changement effectué ! ","success");  
             } else {
+                flash_create("Changement non effectué ! ","Danger");
+            } 
+            header("Location:users.php");
+        } else {
             die("Pas pour toi.");
         }
        

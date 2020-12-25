@@ -12,6 +12,7 @@
                         Liste des utilisateurs
                     </div>
                     <div class="card-body">
+                        <a href="userInsert.php" class="btn btn-primary mb-3">Ajouter un Utilisateur</a>
                         <div class="table-responsive">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
@@ -19,6 +20,7 @@
                                         <th>Noms</th>
                                         <th>Email</th>
                                         <th>Photos</th>
+                                        <th>Actions</th>
                                         <th>Droits</th>
                                     </tr>
                                 </thead>
@@ -28,6 +30,7 @@
                                             <td><?= $user["display_name"] ?></td>
                                             <td><?= $user["user_email"] ?></td>
                                             <td><?= $user["user_photo"] ?></td>
+                                            <td><a href="user_delete.php?id=<?= $user["ID"] ?>&token=<?= $_SESSION["userBO"]["token"] ?>" class="suppr"><i class="fas fa-trash-alt"></i></a></td>
                                             <td class="text-center">
                                                 <form class="m-0" method="post" action="adminUsers.php">
                                                     <input  type="hidden" name="user_ID" value="<?= $user["ID"] ?>">
@@ -47,6 +50,7 @@
                                         <th>Noms</th>
                                         <th>Email</th>
                                         <th>Photos</th>
+                                        <th>Actions</th>
                                         <th>Droits</th>
                                     </tr>
                                 </tfoot>

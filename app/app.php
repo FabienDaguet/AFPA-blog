@@ -6,11 +6,14 @@
         die("Token invalide !");
     }
 
-    include("config/config.inc.php");
-    include("core/pdo.inc.php");
+    
+    include("core/coreModel.php");
     include("core/flash.php");
     include("core/tools.php");
 
     include("app/model/categoriesModel.php");
     $categories = allCategories();
+
+    include_once("app/model/postModel.php");
+    $lastestPosts = lastestPosts(3);
 

@@ -12,5 +12,5 @@ if($user) {
     header("Location:" . $_POST["referer"]);
 } else {
     flash_create("login/mot de passe incorrectes ! ","danger");
-    header("Location:login.php");
+    header("Location:?module=users&action=login");
 }

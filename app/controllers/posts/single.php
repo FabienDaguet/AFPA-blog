@@ -4,7 +4,7 @@
     }
     
     include("app/app.php");
-    include("app/model/postModel.php");
+    include_once("app/model/postModel.php");
     include("app/model/commentsModel.php");
 
     $post = postById($_GET["id"]);
@@ -19,4 +19,4 @@
 
     define("LAYOUT_TITLE", strip_tags($post["post_title"]));
 
-    include("app/views/singlePostview.php");
+    include("app/views/posts/singlePostview.php");

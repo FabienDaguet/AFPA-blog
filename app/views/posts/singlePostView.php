@@ -1,4 +1,4 @@
-<?php include("layout/header.inc.php") ?>
+<?php include("app/views/layout/header.inc.php") ?>
 
     <div class="page-title wb">
         <div class="container">
@@ -27,7 +27,7 @@
                             <h1><?= $post["post_title"]?></h1>
 
                             <div class="blog-meta big-meta">
-                                <small><a href="single.php" title=""><?= $date[2] . "/" . $date[1] . "/" . $date[0] ?></a></small>
+                                <small><a href="single.php" title=""><?= displayDate($post["post_date"], 1) ?></a></small>
                                 <small><a href="blog-author.php" title="">par <?= $post["display_name"];?></a></small>
                                 <small><a href="#" title=""><i class="fa fa-eye"></i> 2344</a></small>
                             </div><!-- end meta -->
@@ -42,7 +42,7 @@
                         </div><!-- end title -->
 
                         <div class="single-post-media">
-                            <img src="static/images/<?= $post["post_img_url"]; ?>" alt="tête de noeud" class="img-fluid">
+                            <img src="static/img/<?= $post["post_img_url"]; ?>" alt="tête de noeud" class="img-fluid">
                         </div><!-- end media -->
 
                         <div class="blog-content">  
@@ -156,22 +156,16 @@
                                     <div class="comments-list">
                                         <?php if ($comments) { 
                                             foreach($comments as $comment) { ?>
-                                                <?php
-                                                    $tab = explode(" ", $comment["comment_date"]);
-                                                    //var_dump($tab);
-                                                    $date = explode("-", $tab[0]);
-                                                    //var_dump($date);
-                                                ?>
                                                 <div class="media">
                                                     <a class="media-left" href="#">
                                                         <img src="static/avatar/<?= $comment["user_photo"] ?>" alt="" class="rounded-circle">
                                                     </a>
                                                     <div class="media-body">
-                                                        <h4 class="media-heading user_name"><?= $comment["display_name"]?> Le <small><?= $date[2] . "/" . $date[1] . "/" . $date[0] ?> </small></h4>
+                                                        <h4 class="media-heading user_name"><?= $comment["display_name"]?> Le <small><?= displayDate($post["post_date"], 1) ?> </small></h4>
                                                         <p><?= $comment["comment_content"] ?></p>
                                                         <!--<a href="#" class="btn btn-primary btn-sm">Reply</a>-->
                                                         <?php if (isset($_SESSION["userFO"]) && (($_SESSION["userFO"]["ID"] == $comment["comment_author"]) || ($_SESSION["userFO"]["user_admin"] == 1) || ($_SESSION["userFO"]["user_admin"] == 2))) { ?>
-                                                            <a href="comment_delete.php?id=<?= $comment["comment_ID"] ?>&token=<?= $_SESSION["userFO"]["token"] ?>" class="suppr"><i class="far fa-trash-alt"></i></a>
+                                                            <a href="?modulle=comments&action=delete&id=<?= $comment["comment_ID"] ?>&token=<?= $_SESSION["userFO"]["token"] ?>" class="suppr"><i class="far fa-trash-alt"></i></a>
                                                         <?php } ?>
                                                     </div>
                                                 </div>
@@ -192,13 +186,13 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <?php if(isset($_SESSION["userFO"])) { ?>
-                                        <form class="form-wrapper" action="comment_insert.php&token=<?= $_SESSION["userFO"]["token"] ?>" method="post">
+                                        <form class="form-wrapper" action="?module=comments&action=insert&token=<?= $_SESSION["userFO"]["token"] ?>" method="post">
                                             <input type="hidden" name="comment_post_ID" value="<?= $_GET["id"] ?>">
                                             <textarea class="form-control" placeholder="Votre commentaire" name="comment_content"></textarea>
                                             <button type="submit" class="btn btn-primary">Envoyer</button>
                                         </form>
                                     <?php } else { ?>
-                                        <div><a href="login.php">Connectez vous</a> pour commenter</div>
+                                        <div><a href="?module=users&action=login">Connectez vous</a> pour commenter</div>
                                     <?php } ?>
                                 </div>
                             </div>
@@ -209,4 +203,4 @@
             </div><!-- end row -->
         </div><!-- end container -->
     </section>
-<?php include("layout/footer.inc.php")?>
+<?php include("app/views/layout/footer.inc.php")?>
